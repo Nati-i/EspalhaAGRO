@@ -1,0 +1,68 @@
+// Schema inicial do EspalhaAgro
+// Etapa 1 (Kickoff): modelagem base para permitir a primeira migration.
+// Regras de negócio e relações mais finas serão refinadas na entrega final.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// Propriedade rural cadastrada pelo produtor.
+/// A localização é usada para consultar o clima na hora da aplicação.
+model Propriedade {
+  id        String   @id @default(uuid())
+  nome      String
+  cidade    String
+  estado    String
+  latitude  Float
+  longitude Float
+  criadoEm  DateTime @default(now())
+
+  consultas ConsultaAplicacao[]
+}
+
+/// Produto fitossanitário cadastrado com parâmetros técnicos
+/// extraídos da bula / Agrofit (MAPA). Dados de exemplo para fins acadêmicos.
+model Produto {
+  id                    String   @id @default(uuid())
+  nome                  String
+  categoria             Categoria
+  sensivelNebulosidade  Boolean  @default(false)
+  carenciaChuvaHoras    Int
+  ventoMinKmh           Float    @default(3)
+  ventoMaxKmh           Float    @default(10)
+  fonteReferencia       String? // link do Agrofit ou bula
+  criadoEm              DateTime @default(now())
+
+  consultas ConsultaAplicacao[]
+}
+
+enum Categoria {
+  HERBICIDA
+  INSETICIDA
+  FUNGICIDA
+  ACARICIDA
+}
+
+/// Histórico de consultas feitas pelo produtor:
+/// registra o clima no momento e o resultado (pode/não pode aplicar).
+model ConsultaAplicacao {
+  id             String   @id @default(uuid())
+  propriedadeId  String
+  produtoId      String
+  ventoKmh       Float
+  temperaturaC   Float
+  umidadePct     Float
+  nublado        Boolean
+  chuvaPrevistaH Int      // horas até a próxima chuva prevista
+  podeAplicar    Boolean
+  motivo         String
+  criadoEm       DateTime @default(now())
+
+  propriedade Propriedade @relation(fields: [propriedadeId], references: [id])
+  produto     Produto     @relation(fields: [produtoId], references: [id])
+}
