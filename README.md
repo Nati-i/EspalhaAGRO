@@ -8,7 +8,7 @@
 | Nome | Função |
 |---|---|
 | Cauana Rosin | Full Stack |
-| [nome do colega] |Banco de dados /front-end|
+| Natani Gayardo |Banco de dados /front-end|
 
 ## 🎯 Descrição do projeto
 
