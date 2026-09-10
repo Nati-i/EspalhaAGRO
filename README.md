@@ -1,4 +1,4 @@
-# AgroJanela — Assistente de Janela de Pulverização
+# EspelhaAGRO— Assistente de Janela de Pulverização
 
 > Projeto desenvolvido para a disciplina de **Programação IV** — Universidade do Oeste de Santa Catarina (UNOESC)
 > Professor: Roberson Junior Fernandes Alves | Semestre: 2026/02
@@ -7,12 +7,12 @@
 
 | Nome | Função |
 |---|---|
-| [seu nome aqui] | [ex: Full Stack / Backend / Frontend] |
-| [nome do colega] | [função] |
+| Cauana Rosin | Full Stack |
+| [nome do colega] |Banco de dados /front-end|
 
 ## 🎯 Descrição do projeto
 
-O **AgroJanela** é um sistema web que ajuda produtores rurais — especialmente quem está iniciando na função de pulverização (troca de responsável na fazenda, novo funcionário, sucessão familiar) — a decidir **quando é seguro aplicar defensivos agrícolas**.
+O **EspelhaAGRO** é um sistema web que ajuda produtores rurais — especialmente quem está iniciando na função de pulverização (troca de responsável na fazenda, novo funcionário, sucessão familiar) — a decidir **quando é seguro aplicar defensivos agrícolas**.
 
 Em vez de o produtor precisar interpretar sozinho a bula técnica e cruzar isso manualmente com o clima do dia, o sistema:
 
