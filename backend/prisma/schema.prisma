@@ -1,6 +1,6 @@
-// Schema inicial do EspalhaAgro
+
 // Etapa 1 (Kickoff): modelagem base para permitir a primeira migration.
-// Regras de negócio e relações mais finas serão refinadas na entrega final.
+
 
 generator client {
   provider = "prisma-client-js"
@@ -11,8 +11,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-/// Propriedade rural cadastrada pelo produtor.
-/// A localização é usada para consultar o clima na hora da aplicação.
+
 model Propriedade {
   id        String   @id @default(uuid())
   nome      String
@@ -25,8 +24,7 @@ model Propriedade {
   consultas ConsultaAplicacao[]
 }
 
-/// Produto fitossanitário cadastrado com parâmetros técnicos
-/// extraídos da bula / Agrofit (MAPA). Dados de exemplo para fins acadêmicos.
+
 model Produto {
   id                    String   @id @default(uuid())
   nome                  String
@@ -48,8 +46,7 @@ enum Categoria {
   ACARICIDA
 }
 
-/// Histórico de consultas feitas pelo produtor:
-/// registra o clima no momento e o resultado (pode/não pode aplicar).
+
 model ConsultaAplicacao {
   id             String   @id @default(uuid())
   propriedadeId  String
