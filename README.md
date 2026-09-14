@@ -1,4 +1,4 @@
-# EspelhaAGRO— Assistente de Janela de Pulverização
+# EspalhaAGRO— Assistente de Janela de Pulverização
 
 > Projeto desenvolvido para a disciplina de **Programação IV** — Universidade do Oeste de Santa Catarina (UNOESC)
 > Professor: Roberson Junior Fernandes Alves | Semestre: 2026/02
@@ -12,7 +12,7 @@
 
 ## 🎯 Descrição do projeto
 
-O **EspelhaAGRO** é um sistema web que ajuda produtores rurais — especialmente quem está iniciando na função de pulverização (troca de responsável na fazenda, novo funcionário, sucessão familiar) — a decidir **quando é seguro aplicar defensivos agrícolas**.
+O **EspalhaAGRO** é um sistema web que ajuda produtores rurais — especialmente quem está iniciando na função de pulverização (troca de responsável na fazenda, novo funcionário, sucessão familiar) — a decidir **quando é seguro aplicar defensivos agrícolas**.
 
 Em vez de o produtor precisar interpretar sozinho a bula técnica e cruzar isso manualmente com o clima do dia, o sistema:
 
