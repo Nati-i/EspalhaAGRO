@@ -69,7 +69,6 @@ agro-mvp/
 cd backend
 npm install
 cp .env.example .env
-# edite o .env com a URL do seu banco PostgreSQL
 npx prisma migrate dev --name init
 npm run dev
 ```
