@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// Propriedade rural cadastrada pelo produtor.
+model Propriedade {
+  id        String   @id @default(uuid())
+  nome      String
+  cidade    String
+  estado    String
+  latitude  Float
+  longitude Float
+  criadoEm  DateTime @default(now())
+}
+
+/// Produto fitossanitário com parâmetros técnicos da bula aprovada.
+model Produto {
+  id                        String              @id @default(uuid())
+  nome                      String              @unique
+  principioAtivo            String
+  fabricante                String
+  categoria                 Categoria
+  carenciaDias              Int
+  intervaloSemChuvaHoras    Float
+  tempMinima                Float?
+  tempMaxima                Float?
+  umidadeMinima             Float?
+  ventoMaximo               Float?
+  sensibilidadeNebulosidade Boolean             @default(false)
+  comoUsar                  String?             @db.Text
+  condicoesClimaInfo        String?             @db.Text
+  consultas                 ConsultaAplicacao[]
+}
+
+/// Registro do clima consultado para um produto e resultado da avaliação.
+model ConsultaAplicacao {
+  id                 String             @id @default(uuid())
+  produtoId          String
+  latitude           Float
+  longitude          Float
+  temperatura        Float
+  umidade            Float
+  vento              Float
+  chuvaPrevista      Float
+  statusRecomendacao StatusRecomendacao
+  createdAt          DateTime           @default(now())
+  produto            Produto            @relation(fields: [produtoId], references: [id], onDelete: Cascade)
+}
+
+enum Categoria {
+  HERBICIDA
+  FUNGICIDA
+  INSETICIDA
+  ACARICIDA
+  NEMATICIDA
+  OUTROS
+}
+
+enum StatusRecomendacao {
+  COMPATIVEL
+  ATENCAO
+  NAO_RECOMENDADO
+}
