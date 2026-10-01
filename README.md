@@ -1,4 +1,4 @@
-cat > /home/claude/agro-mvp/README.md << 'READMEEOF'
+
 # 🌾 EspalhaAgro — Assistente de Janela de Pulverização
 
 > Projeto desenvolvido para a disciplina de **Programação IV** — Universidade do Oeste de Santa Catarina (UNOESC)
@@ -14,9 +14,8 @@ cat > /home/claude/agro-mvp/README.md << 'READMEEOF'
 
 | Nome | Função |
 |---|---|
-| Natani Gabriela Gayardo | Full Stack / Banco de dados |
-| [nome do integrante 2] | [função] |
-| [nome do integrante 3] | [função] |
+| Natani Gabriela Gayardo | Frontend/ Banco de dados |
+| Cauana Ghizzi Rosin | Fulstack |
 
 ## 🎯 Descrição do projeto
 
