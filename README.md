@@ -1,24 +1,53 @@
-# EspalhaAgro — Assistente de Janela de Pulverização
+cat > /home/claude/agro-mvp/README.md << 'READMEEOF'
+# 🌾 EspalhaAgro — Assistente de Janela de Pulverização
 
-> Projeto desenvolvido para a disciplina de **Programação IV** — UNOESC
+> Projeto desenvolvido para a disciplina de **Programação IV** — Universidade do Oeste de Santa Catarina (UNOESC)
 > Professor: Roberson Junior Fernandes Alves | Semestre: 2026/02
 
-## 🎯 Descrição
+## 🔗 Links da aplicação
 
-O **EspalhaAgro** apresenta as condições meteorológicas atuais da propriedade e mantém uma biblioteca de defensivos pesquisável por nome e categoria. O clima aparece sem exigir a seleção de um produto; a biblioteca oferece um resumo geral da categoria e direciona à consulta oficial da bula.
+* **Frontend (aplicação online):** [link do Netlify/Vercel aqui]
+* **Backend (API):** [link do Render/Railway aqui]
+* **Vídeo de apresentação:** [link do YouTube aqui]
+
+## 👥 Integrantes do time
+
+| Nome | Função |
+|---|---|
+| Natani Gabriela Gayardo | Full Stack / Banco de dados |
+| [nome do integrante 2] | [função] |
+| [nome do integrante 3] | [função] |
+
+## 🎯 Descrição do projeto
+
+O **EspalhaAgro** é um sistema web que ajuda produtores rurais — especialmente quem está iniciando na função de pulverização (troca de responsável na fazenda, novo funcionário, sucessão familiar) — a decidir **quando é seguro aplicar defensivos agrícolas**.
+
+O produtor não precisa saber nenhum parâmetro técnico: ele busca o produto por **nome ou categoria** (herbicida, inseticida, fungicida, acaricida) num catálogo já cadastrado — como uma **bula virtual**, com indicação de uso, período de aplicação e cuidados essenciais. O sistema cruza esses parâmetros técnicos com o **clima real da propriedade** (vento, temperatura, umidade, nebulosidade e previsão de chuva, via Open-Meteo) e responde de forma direta: **pode aplicar agora, ou é melhor esperar — e por quê.**
 
 ### ⚠️ Escopo e limitações
 
-Projeto acadêmico. O clima vem da Open-Meteo, não de imagens de satélite. Não há integração automática de bulas com o Agrofit: os textos por categoria são gerais, não substituem a bula aprovada ou o receituário, e o sistema não recomenda aplicação quando faltam parâmetros técnicos confirmados.
+Projeto acadêmico. Os produtos do catálogo são exemplos de demonstração, com dados técnicos de referência pública (Agrofit/MAPA). O sistema **não substitui receituário agronômico nem orientação de um engenheiro agrônomo**.
 
-## ⚙️ Stack
+## 🛠️ Tecnologias utilizadas
 
-- **Frontend:** Next.js (TypeScript)
-- **Backend:** Node.js + Express (TypeScript)
-- **ORM / Banco:** Prisma + PostgreSQL
-- **Clima:** [Open-Meteo](https://open-meteo.com/) (API gratuita, sem chave; atualização a cada 10 minutos)
+* **Frontend:** Next.js (TypeScript), design próprio (sem biblioteca de UI)
+* **Backend:** Node.js + Express (TypeScript)
+* **Banco de dados & ORM:** PostgreSQL (Supabase) + Prisma ORM
+* **Clima:** API gratuita Open-Meteo (sem necessidade de chave)
+* **Hospedagem:** [Render/Railway] (backend) e [Netlify/Vercel] (frontend)
+* **Testes:** Vitest (testes unitários da lógica de decisão)
 
-## 📦 Estrutura
+## 🗂️ Entidades e operações CRUD
+
+| Entidade | Descrição | Create | Read | Update | Delete |
+|---|---|---|---|---|---|
+| **Propriedade** | Fazenda/área do produtor, com localização | ✅ | ✅ | ✅ | ✅ |
+| **Produto** | Catálogo de defensivos com a "bula virtual" | ✅ | ✅ | ✅ | ✅ |
+| **ConsultaAplicacao** | Histórico de consultas (clima + resultado) | ✅ | ✅ | — | ✅ |
+
+> Consultas não são editáveis por natureza (são um registro histórico do que foi perguntado em um momento específico), mas podem ser excluídas.
+
+## 📦 Estrutura do projeto
 
 ```
 espalhaagro/
@@ -26,13 +55,16 @@ espalhaagro/
 ├── .gitignore
 ├── backend/
 │   ├── package.json / tsconfig.json / .env.example
-│   ├── prisma/schema.prisma
+│   ├── prisma/
+│   │   ├── schema.prisma
+│   │   ├── seed.ts          # popula o catálogo de produtos de exemplo
+│   │   └── migrations/
 │   └── src/
-│       ├── main.ts              # sobe o servidor e monta as rotas
-│       ├── lib/prisma.ts        # instância única do Prisma
+│       ├── main.ts
+│       ├── lib/prisma.ts
 │       ├── services/
-│       │   ├── weather.service.ts   # clima, previsão de chuva e horários solares
-│       │   └── decisao.service.ts   # regra pura: pode/não pode aplicar
+│       │   ├── weather.service.ts
+│       │   └── decisao.service.ts
 │       └── routes/
 │           ├── propriedade.routes.ts
 │           ├── produto.routes.ts
@@ -40,26 +72,43 @@ espalhaagro/
 └── frontend/
     ├── package.json / tsconfig.json / .env.example
     └── src/
-        ├── lib/api.ts            # todas as chamadas ao backend
+        ├── components/Header.tsx
+        ├── lib/api.ts
         └── pages/
-            ├── index.tsx
+            ├── index.tsx       # tela principal (clima + bula virtual)
+            ├── gerenciar.tsx
             ├── propriedades.tsx
-            ├── produtos.tsx
-            └── gerenciar.tsx
+            └── produtos.tsx
 ```
 
-## 🚀 Como rodar
+## 🚀 Como executar o projeto localmente
 
-### Backend
+### Pré-requisitos
+
+* Node.js 18+
+* Uma instância PostgreSQL (local, Docker, ou Supabase)
+
+### 1. Clonar o repositório
+
+```bash
+git clone https://github.com/Nati-i/EspalhaAGRO.git
+cd EspalhaAGRO
+```
+
+### 2. Backend
+
 ```bash
 cd backend
 npm install
-cp .env.example .env   # ajuste DATABASE_URL com seu usuário/senha do Postgres
-npx prisma db push      # sincroniza schema.prisma com o banco de desenvolvimento
+cp .env.example .env
+# edite o .env com a sua DATABASE_URL (local ou Supabase)
+npx prisma migrate dev
+npx prisma db seed      # popula o catálogo de produtos de exemplo
 npm run dev             # http://localhost:3333
 ```
 
-### Frontend
+### 3. Frontend
+
 ```bash
 cd frontend
 npm install
@@ -67,21 +116,32 @@ cp .env.example .env.local
 npm run dev             # http://localhost:3000
 ```
 
-## 🔌 Rotas do backend
+### 4. Rodar os testes (backend)
+
+```bash
+cd backend
+npm test
+```
+
+## 🔌 Rotas da API
 
 | Método | Rota | Descrição |
 |---|---|---|
 | GET | `/health` | Verifica se o servidor está no ar |
 | GET | `/propriedades` | Lista propriedades |
-| POST | `/propriedades` | Cadastra propriedade (nome, cidade, estado, latitude, longitude) |
-| GET | `/produtos` | Lista produtos |
-| POST | `/produtos` | Cadastra produto por nome e categoria; parâmetros técnicos da bula são opcionais |
+| POST | `/propriedades` | Cadastra propriedade |
+| PUT | `/propriedades/:id` | Atualiza propriedade |
+| DELETE | `/propriedades/:id` | Remove propriedade |
+| GET | `/produtos?q=&categoria=` | Busca produtos do catálogo por nome/categoria |
+| POST | `/produtos` | Cadastra produto (uso avançado) |
+| PUT | `/produtos/:id` | Atualiza produto |
+| DELETE | `/produtos/:id` | Remove produto |
 | GET | `/consultas` | Histórico de consultas |
-| POST | `/consultas` | Recebe `propriedadeId` + `produtoId`, busca o clima real e retorna a decisão |
-| GET | `/consultas/clima?propriedadeId=...` | Busca as condições meteorológicas atuais sem exigir um produto |
+| POST | `/consultas` | Consulta clima + decide se pode aplicar |
+| DELETE | `/consultas/:id` | Remove consulta do histórico |
 
-## 🗂️ Fluxo de uso
+## 📝 Licença
 
-1. Cadastra a propriedade e permite ao navegador capturar as coordenadas do dispositivo; faça isso próximo à propriedade e confira cidade/UF.
-2. A home consulta automaticamente o clima da propriedade selecionada e atualiza os dados a cada 10 minutos. O tema acompanha nascer e pôr do sol informados pela Open-Meteo.
-3. Na biblioteca, busca ou cadastra defensivos pelo nome e categoria. Não é necessário inventar valores técnicos; para a bula específica, consulte o registro no Agrofit.
+Projeto acadêmico sem fins comerciais, desenvolvido para a disciplina de Programação IV (UNOESC).
+READMEEOF
+echo "README atualizado"
