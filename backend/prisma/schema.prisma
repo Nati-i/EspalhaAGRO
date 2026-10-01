@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 /// Propriedade rural cadastrada pelo produtor.
@@ -22,6 +23,8 @@ model Propriedade {
 model Produto {
   id                        String              @id @default(uuid())
   nome                      String              @unique
+  descricao                 String?             @db.Text
+  preco                     Float?
   principioAtivo            String
   fabricante                String
   categoria                 Categoria

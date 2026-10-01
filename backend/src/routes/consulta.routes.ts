@@ -1,9 +1,23 @@
 import { Router } from 'express';
+import { Prisma } from '@prisma/client';
 import { prisma } from '../lib/prisma';
 import { buscarClima } from '../services/weather.service';
 import { decidirAplicacao } from '../services/decisao.service';
 
 export const consultaRoutes = Router();
+
+consultaRoutes.delete('/:id', async (req, res) => {
+  try {
+    await prisma.consultaAplicacao.delete({ where: { id: req.params.id } });
+    return res.status(204).send();
+  } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
+      return res.status(404).json({ erro: 'Consulta não encontrada.' });
+    }
+    console.error('Erro ao excluir consulta:', error);
+    return res.status(500).json({ erro: 'Não foi possível excluir a consulta.' });
+  }
+});
 
 // Busca o clima da propriedade sem exigir um produto ou gerar uma decisão.
 consultaRoutes.get('/clima', async (req, res) => {
