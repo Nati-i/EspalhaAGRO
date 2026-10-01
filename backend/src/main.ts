@@ -25,7 +25,9 @@ app.use('/api/produtos', produtoRoutes);
 app.use('/api/consultas', consultaRoutes);
 
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3333;
-
+app.get('/', (_req, res) => {
+  res.json({ message: 'API EspalhaAgro rodando com sucesso!' });
+});
 app.listen(PORT, () => {
   console.log(`EspalhaAgro backend rodando em http://localhost:${PORT}`);
 });
