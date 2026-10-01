@@ -142,5 +142,3 @@ npm test
 ## 📝 Licença
 
 Projeto acadêmico sem fins comerciais, desenvolvido para a disciplina de Programação IV (UNOESC).
-READMEEOF
-echo "README atualizado"
