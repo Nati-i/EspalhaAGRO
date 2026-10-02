@@ -1,6 +1,3 @@
-// Serviço responsável por buscar o clima atual e a previsão de chuva
-// na Open-Meteo (API pública e gratuita, sem necessidade de chave).
-
 export interface CondicaoClimatica {
   ventoKmh: number;
   temperaturaC: number;
@@ -69,13 +66,6 @@ export function horarioLocalParaUnix(horarioLocal: string, offsetUtcSegundos: nu
   return Math.floor(Date.parse(`${horarioLocal}Z`) / 1000 - offsetUtcSegundos);
 }
 
-/**
- * O array "hourly" da Open-Meteo começa à meia-noite do dia atual, não no
- * horário da consulta. Por isso, antes de contar "quantas horas até chover",
- * é preciso achar em que posição desse array a hora atual (data.current.time)
- * está, e só então procurar a próxima hora com chance relevante de chuva
- * a partir dali.
- */
 export function horasAteChuva(
   horarios: string[],
   probabilidadesPorHora: number[],
