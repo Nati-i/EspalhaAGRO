@@ -21,7 +21,7 @@
 
 O **EspalhaAgro** é um sistema web que ajuda produtores rurais — especialmente quem está iniciando na função de pulverização (troca de responsável na fazenda, novo funcionário, sucessão familiar) — a decidir quando é seguro aplicar defensivos agrícolas.
 
-O produtor não precisa saber nenhum parâmetro técnico: ele busca o produto por nome ou categoria (herbicida, inseticida, fungicida, acaricida) num catálogo já cadastrado — como uma **bula virtual**, com indicação de uso, período de aplicação e cuidados essenciais. O sistema cruza esses parâmetros técnicos com o clima real da propriedade (vento, temperatura, umidade, nebulosidade e previsão de chuva, via Open-Meteo) e responde de forma direta: pode aplicar agora, ou é melhor esperar — e por quê.
+O produtor não precisa saber nenhum parâmetro técnico: ele busca o produto por nome ou categoria (herbicida, inseticida, fungicida, acaricida) num catálogo já cadastrado — como uma bula virtual, com indicação de uso, período de aplicação e cuidados essenciais. O sistema cruza esses parâmetros técnicos com o clima real da propriedade (vento, temperatura, umidade, nebulosidade e previsão de chuva, via Open-Meteo) e responde de forma direta: pode aplicar agora, ou é melhor esperar — e por quê.
 
 ### ⚠️ Escopo e limitações
 
