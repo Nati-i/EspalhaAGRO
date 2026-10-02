@@ -6,9 +6,9 @@
 
 ## 🔗 Links da aplicação
 
-* **Frontend (aplicação online):** [link do Netlify/Vercel aqui]
-* **Backend (API):** [link do Render/Railway aqui]
-* **Vídeo de apresentação:** [link do YouTube aqui]
+* **Frontend (aplicação online):** link do Vercel aqui: https://espalha-agro-kpz5-eabm3af2w-natani.vercel.app/
+* **Backend (API):** https://espalhaagro.onrender.com/
+* **Vídeo de apresentação:** 
 
 ## 👥 Integrantes do time
 
