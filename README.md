@@ -15,7 +15,7 @@
 | Nome | Função |
 |---|---|
 | Natani Gabriela Gayardo | Frontend/ Banco de dados |
-| Cauana Ghizzi Rosin | Fullstack |
+| Cauana Rosin Ghizzi| Fullstack |
 
 ## 🎯 Descrição do projeto
 
