@@ -6,14 +6,6 @@ export interface ResultadoDecisao {
   motivo: string;
 }
 
-/**
- * Decide se é seguro aplicar o produto agora, com base nas condições
- * climáticas e nos parâmetros técnicos cadastrados (vindos da bula/Agrofit).
- *
- * Função pura: não acessa banco nem API externa, só recebe os dados
- * já carregados e devolve o resultado. Isso facilita testar cada regra
- * isoladamente.
- */
 export function decidirAplicacao(
   produto: Produto,
   clima: Pick<CondicaoClimatica, 'ventoKmh' | 'temperaturaC' | 'umidadePct' | 'nublado' | 'chuvaPrevistaH'>,
