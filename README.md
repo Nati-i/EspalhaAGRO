@@ -33,7 +33,7 @@ Projeto acadêmico. Os produtos do catálogo são exemplos de demonstração, co
 * **Backend:** Node.js + Express (TypeScript)
 * **Banco de dados & ORM:** PostgreSQL (Supabase) + Prisma ORM
 * **Clima:** API gratuita Open-Meteo (sem necessidade de chave)
-* **Hospedagem:** [Render/Railway] (backend) e [Netlify/Vercel] (frontend)
+* **Hospedagem:** Render (backend) e Vercel (frontend)
 * **Testes:** Vitest (testes unitários da lógica de decisão)
 
 ## 🗂️ Entidades e operações CRUD
