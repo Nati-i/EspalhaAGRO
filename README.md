@@ -6,7 +6,7 @@
 
 ## 🔗 Links da aplicação
 
-* **Frontend (aplicação online):** https://espalha-agro-kpz5-eabm3af2w-natani.vercel.app/
+* **Frontend (aplicação online):** https://espalha-agro.vercel.app/
 * **Backend (API):** https://espalhaagro.onrender.com/
 * **Vídeo de apresentação:** 
 
