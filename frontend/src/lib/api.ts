@@ -1,5 +1,3 @@
-// Centraliza as chamadas ao backend. Um único lugar pra trocar a URL
-// base se precisar (ex: quando for pra produção).
 
 const API_URL = (process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3333').replace(/\/$/, '');
 
